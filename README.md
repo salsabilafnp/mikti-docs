@@ -10,4 +10,4 @@ Repositori ini dibuat dengan tujuan mendokumentasikan tugas atau latihan yang di
 
 ## Cara Run Program
 
-- Pada file tunggal, bisa langsung run dengan cara menuliskan perintah dart run [namafile].dart pada terminal/cmd
+- Pada file tunggal, bisa langsung run dengan cara menuliskan perintah `dart run [namafile].dart` pada terminal/cmd
