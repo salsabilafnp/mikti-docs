@@ -7,6 +7,7 @@ Repositori ini dibuat dengan tujuan mendokumentasikan tugas atau latihan yang di
 
 - learn.dart -> file latihan selama pertemuan 9
 - ttc.dart -> file challenge yang diberikan saat pertemuan 9
+- ttc2.dart ->  file challenge yang diberikan saat pertemuan 10; konversi suhu dari Fahrenheit, Reamur, dan Kelvin ke Celcius
 
 ## Cara Run Program
 
