@@ -30,19 +30,19 @@ void main() {
       stdout.write('Masukkan suhu dalam Fahrenheit: ');
       num fahrenheit = num.parse(stdin.readLineSync()!);
       result = fahrenheitToCelcius(fahrenheit);
-      print('$fahrenheit derajat Fahrenheit = $result derajat Celcius');
+      print('$fahrenheit derajat Fahrenheit = ${result.toStringAsFixed(2)} derajat Celcius');
       break;
     case '2':
       stdout.write('Masukkan suhu dalam Reamur: ');
       num reamur = num.parse(stdin.readLineSync()!);
       result = reamurToCelcius(reamur);
-      print('$reamur derajat Reamur = $result derajat Celcius');
+      print('$reamur derajat Reamur = ${result.toStringAsFixed(2)} derajat Celcius');
       break;
     case '3':
       stdout.write('Masukkan suhu dalam Kelvin: ');
       num kelvin = num.parse(stdin.readLineSync()!);
       result = kelvinToCelcius(kelvin);
-      print('$kelvin derajat Kelvin = $result derajat Celcius');
+      print('$kelvin derajat Kelvin = ${result.toStringAsFixed(2)} derajat Celcius');
       break;
     default:
       print('Pilihan tidak valid');
