@@ -1,3 +1,4 @@
+import 'package:exercise_app/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -7,68 +8,11 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-          body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 50,
-                  height: 50,
-                  color: Colors.red,
-                ),
-                const SizedBox(width: 10),
-                Container(
-                  width: 50,
-                  height: 50,
-                  color: Colors.orange,
-                ),
-                const SizedBox(width: 10),
-                Container(
-                  width: 50,
-                  height: 50,
-                  color: Colors.green,
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                Container(
-                  width: 170,
-                  height: 170,
-                  color: Colors.purple,
-                ),
-                Container(
-                  width: 150,
-                  height: 150,
-                  color: Colors.blue,
-                ),
-                Container(
-                  width: 120,
-                  height: 120,
-                  color: Colors.cyan,
-                ),
-                Container(
-                  width: 100,
-                  height: 100,
-                  color: Colors.pink,
-                ),
-              ],
-            )
-          ],
-        ),
-      )),
+      home: HomePage(),
     );
   }
 }
