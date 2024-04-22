@@ -11,12 +11,33 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: _appBar(context),
       drawer: _drawer(),
-      body: const Center(
-        child: Text("Sample"),
+      body: Center(
+        child: TextButton(
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: const Text('Warning!'),
+                  content: const Text("Please, upload today's documentation"),
+                  actions: [
+                    TextButton(
+                      child: const Text("Alright"),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+          child: const Text("No Data"),
+        ),
       ),
       endDrawer: Container(
         alignment: Alignment.center,
-        child: Text('Version 1.0.0'),
+        child: const Text('Version 1.0.0'),
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),

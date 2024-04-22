@@ -7,7 +7,22 @@ class UploadPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Center(),
+      body: Column(
+        children: [
+          // Elevated Button
+          // ElevatedButton(
+          //   child: const Center(
+          //     child: Text('Upload'),
+          //   ),
+          //   onPressed: () {},
+          // ),
+          // Icon Button
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.upload_file),
+          )
+        ],
+      ),
     );
   }
 }
