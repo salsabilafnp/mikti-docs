@@ -1,7 +1,7 @@
-import 'package:exercise_app/pages/info_page.dart';
-import 'package:exercise_app/pages/upload_page.dart';
+import 'package:exercise_app/pages/history_page.dart';
+import 'package:exercise_app/pages/setting_page.dart';
+import 'package:exercise_app/pages/add_note_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -12,27 +12,59 @@ class HomePage extends StatelessWidget {
       appBar: _appBar(context),
       drawer: _drawer(),
       body: Center(
-        child: TextButton(
-          onPressed: () {
-            showDialog(
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                  title: const Text('Warning!'),
-                  content: const Text("Please, upload today's documentation"),
-                  actions: [
-                    TextButton(
-                      child: const Text("Alright"),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              "Hello,",
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const Text(
+              "I'm your tracker-buddy!",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 24),
+            TextButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: const Text('Warning!'),
+                      content: const Text(
+                          "Please, create your first financial notes!"),
+                      actions: [
+                        TextButton(
+                          child: const Text("Okay!"),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    );
+                  },
                 );
               },
-            );
-          },
-          child: const Text("No Data"),
+              child: const Text("No Data"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const HistoryPage(),
+                  ),
+                );
+              },
+              child: Text("Check the layout for data"),
+            )
+          ],
         ),
       ),
       endDrawer: Container(
@@ -45,7 +77,7 @@ class HomePage extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => UploadPage(),
+              builder: (context) => const AddNotePage(),
             ),
           );
         },
@@ -54,65 +86,72 @@ class HomePage extends StatelessWidget {
       bottomNavigationBar: _bottomNavigationBar(),
     );
   }
-}
 
-AppBar _appBar(context) {
-  return AppBar(
-    title: const Text('Exercise'),
-    backgroundColor: Color(0xFF5C5470),
-    actions: [
-      IconButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => const InfoPage()),
-          );
-        },
-        icon: const Icon(Icons.info),
-      ),
-    ],
-  );
-}
+  AppBar _appBar(context) {
+    Color backgroundColor = const Color(0xFF5C5470);
 
-Drawer _drawer() {
-  return Drawer(
-    child: ListView(
-      children: [
-        const DrawerHeader(
-          child: Text("Header"),
-        ),
-        ListTile(
-          leading: const Icon(Icons.people),
-          title: const Text("Connections"),
-          onTap: () {},
-        ),
-        ListTile(
-          leading: const Icon(Icons.directions_bus),
-          title: const Text("Transportation"),
-          onTap: () {},
-        ),
-        Divider(),
-        ListTile(
-          leading: const Icon(Icons.logout),
-          title: const Text("Log Out"),
-          onTap: () {},
+    return AppBar(
+      title: const Text('Exercise'),
+      backgroundColor: backgroundColor,
+      actions: [
+        IconButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const SettingPage()),
+            );
+          },
+          icon: const Icon(Icons.settings),
         ),
       ],
-    ),
-  );
-}
+    );
+  }
 
-BottomNavigationBar _bottomNavigationBar() {
-  return BottomNavigationBar(
-    items: const [
-      BottomNavigationBarItem(
-        icon: Icon(Icons.home),
-        label: 'Home',
+  Drawer _drawer() {
+    return Drawer(
+      child: ListView(
+        children: [
+          const DrawerHeader(
+            child: Text("Header"),
+          ),
+          ListTile(
+            leading: const Icon(Icons.attach_money),
+            title: const Text("Financial"),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: const Icon(Icons.playlist_add_check_circle_outlined),
+            title: const Text("Daily Planner"),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: const Icon(Icons.notes_outlined),
+            title: const Text("Notes"),
+            onTap: () {},
+          ),
+          Divider(),
+          ListTile(
+            leading: const Icon(Icons.logout),
+            title: const Text("Log Out"),
+            onTap: () {},
+          ),
+        ],
       ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.settings),
-        label: 'Settings',
-      ),
-    ],
-  );
+    );
+  }
+
+  BottomNavigationBar _bottomNavigationBar() {
+    return BottomNavigationBar(
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'Home',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.history),
+          label: 'History',
+        ),
+      ],
+    );
+  }
 }
