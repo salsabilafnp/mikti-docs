@@ -9,7 +9,8 @@ Repositori ini dibuat dengan tujuan mendokumentasikan tugas atau latihan yang di
 - ttc.dart -> file challenge yang diberikan saat pertemuan 9
 - ttc2.dart ->  file challenge yang diberikan saat pertemuan 10; konversi suhu dari Fahrenheit, Reamur, dan Kelvin ke Celcius
 - exercise_240327.dart -> file exercise tentang row, column, dan stack
-- folder exercise_app -> aplikasi yang dikembangkan untuk mengerjakan exercise pada pertemuan 21
+- exercise_app -> aplikasi yang dikembangkan untuk mengerjakan hands on project selama pembelajaran berlangsung
+- digital_presence -> aplikasi yang dikembangkan untuk mengerjakan latihan responsive UI
 
 ## Cara Run Program
 
