@@ -47,7 +47,7 @@ class _DetailPageState extends State<DetailPage> {
                 setState(() {
                   posX += details.delta.dx;
                   posY += details.delta.dy;
-                  print(details);
+                  // print(details);
                 });
               },
               onTap: () {
