@@ -1,5 +1,7 @@
 import 'dart:math';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 double randomBorderRadius() {
   return Random().nextDouble() * 20;
@@ -12,9 +14,9 @@ double randomMargin() {
 Color randomColor() {
   return Color.fromARGB(
     255,
-    Random().nextInt(255),
-    Random().nextInt(255),
-    Random().nextInt(255),
+    Random().nextInt(256),
+    Random().nextInt(256),
+    Random().nextInt(256),
   );
 }
 
@@ -52,12 +54,18 @@ class _AddNotePageState extends State<AddNotePage> {
 
   @override
   Widget build(BuildContext context) {
+    if (posX == 0 && posY == 0) {
+      centerPosition(context);
+    }
+
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Column(
-            children: [
-              GestureDetector(
+        child: Stack(
+          children: [
+            Positioned(
+              left: posX,
+              top: posY,
+              child: GestureDetector(
                 onTap: () => changeState(),
                 onPanUpdate: (details) {
                   setState(() {
@@ -78,10 +86,20 @@ class _AddNotePageState extends State<AddNotePage> {
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
+  }
+
+  void centerPosition(BuildContext context) {
+    posX = (MediaQuery.of(context).size.width - boxSize) / 2;
+    posY = (MediaQuery.of(context).size.height - boxSize) / 2;
+
+    setState(() {
+      this.posX = posX;
+      this.posY = posY;
+    });
   }
 }
