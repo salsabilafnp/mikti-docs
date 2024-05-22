@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gallery_destination/components/destination.dart';
 import 'package:gallery_destination/detail_destination_page.dart';
 
