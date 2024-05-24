@@ -1,3 +1,5 @@
+import 'package:exercise_app/components/custom_appbar.dart';
+import 'package:exercise_app/pages/info_screen.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -5,21 +7,32 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile'),
-      ),
+      appBar: const CustomAppBar(pageTitle: 'Profile'),
       body: Center(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            // Lebar layar lebih dari 600, layout horizontal
-            if (constraints.maxWidth > 600) {
-              return buildHorizontalLayout();
-            }
-            // Lebar layar kurang dari 600, layout vertikal
-            else {
-              return buildVerticalLayout();
-            }
-          },
+        child: Column(
+          children: [
+            LayoutBuilder(
+              builder: (context, constraints) {
+                // Lebar layar lebih dari 600, layout horizontal
+                if (constraints.maxWidth > 600) {
+                  return buildHorizontalLayout();
+                }
+                // Lebar layar kurang dari 600, layout vertikal
+                else {
+                  return buildVerticalLayout();
+                }
+              },
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const InfoScreen()),
+                );
+              },
+              child: const Text("Information Screen"),
+            ),
+          ],
         ),
       ),
     );
@@ -27,7 +40,6 @@ class ProfilePage extends StatelessWidget {
 
   Widget buildHorizontalLayout() {
     return Card(
-      color: const Color(0xFFE5DFD8),
       margin: const EdgeInsets.all(20),
       child: Container(
         padding: const EdgeInsets.all(20),

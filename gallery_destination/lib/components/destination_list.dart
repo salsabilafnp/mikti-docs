@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gallery_destination/components/destination.dart';
-import 'package:gallery_destination/detail_destination_page.dart';
+import 'package:gallery_destination/models/destination.dart';
+import 'package:gallery_destination/pages/detail_page.dart';
 
 class DestinationListItem extends StatelessWidget {
   final Destination destination;
@@ -12,7 +12,7 @@ class DestinationListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         Navigator.push(
           context,
@@ -37,11 +37,13 @@ class DestinationListItem extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(
-              destination.imageUrl,
-              width: 200,
-              height: 100,
-              fit: BoxFit.cover,
+            Expanded(
+              child: Image.asset(
+                destination.imageUrl,
+                width: 200,
+                height: 100,
+                fit: BoxFit.cover,
+              ),
             ),
             Expanded(
               child: Container(

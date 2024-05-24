@@ -1,3 +1,4 @@
+import 'package:exercise_app/components/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
 class HistoryPage extends StatelessWidget {
@@ -6,6 +7,7 @@ class HistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const CustomAppBar(pageTitle: "Your History"),
       body: LayoutBuilder(builder: (BuildContext context, constraint) {
         if (constraint.maxWidth < 600) {
           return ListView(

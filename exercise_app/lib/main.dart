@@ -1,4 +1,4 @@
-import 'package:exercise_app/pages/add_note_page.dart';
+import 'package:exercise_app/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,9 +10,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      title: 'Exercise App',
       debugShowCheckedModeBanner: false,
-      home: AddNotePage(),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF98C1D9),
+          surface: const Color(0xFF98C1D9),
+          primary: const Color(0xFF5C5470),
+        ),
+        useMaterial3: true,
+      ),
+      home: const HomePage(),
     );
   }
 }

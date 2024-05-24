@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:gallery_destination/components/destination.dart';
+import 'package:gallery_destination/components/custom_appbar.dart';
+import 'package:gallery_destination/models/destination.dart';
 
 class DetailPage extends StatelessWidget {
   final Destination destination;
@@ -13,10 +13,7 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Wisata Bandung'),
-        centerTitle: true,
-      ),
+      appBar: CustomAppBar(pageTitle: "Detail ${destination.name}"),
       body: LayoutBuilder(
         builder: (context, constraints) {
           if (constraints.maxWidth < 600) {
@@ -144,9 +141,8 @@ class DetailPage extends StatelessWidget {
               ),
               const SizedBox(width: 10),
               Expanded(
-                // Adjust to take available space
                 child: Text(
-                  destination.fullLocation,
+                  destination.address,
                   overflow: TextOverflow.clip,
                 ),
               ),

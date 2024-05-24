@@ -1,6 +1,7 @@
-import 'package:exercise_app/pages/history_page.dart';
-import 'package:exercise_app/pages/setting_page.dart';
+import 'package:exercise_app/components/custom_appbar.dart';
+import 'package:exercise_app/components/custom_drawer.dart';
 import 'package:exercise_app/pages/add_note_page.dart';
+import 'package:exercise_app/pages/history_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -9,27 +10,27 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _appBar(context),
-      drawer: _drawer(),
+      appBar: const CustomAppBar(pageTitle: 'Home'),
+      drawer: const CustomDrawer(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              "Hello,",
+              "Hello, Sabil!",
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
             const Text(
-              "I'm your tracker-buddy!",
+              "I'm your asisstant, buddy!",
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             TextButton(
               onPressed: () {
                 showDialog(
@@ -37,8 +38,7 @@ class HomePage extends StatelessWidget {
                   builder: (context) {
                     return AlertDialog(
                       title: const Text('Warning!'),
-                      content: const Text(
-                          "Please, create your first financial notes!"),
+                      content: const Text("Please, create your first notes!"),
                       actions: [
                         TextButton(
                           child: const Text("Okay!"),
@@ -62,7 +62,7 @@ class HomePage extends StatelessWidget {
                   ),
                 );
               },
-              child: Text("Check the layout for data"),
+              child: const Text("Check the layout for data"),
             )
           ],
         ),
@@ -84,59 +84,6 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: _bottomNavigationBar(),
-    );
-  }
-
-  AppBar _appBar(context) {
-    Color backgroundColor = const Color(0xFF5C5470);
-
-    return AppBar(
-      title: const Text('Exercise'),
-      backgroundColor: backgroundColor,
-      actions: [
-        IconButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const SettingPage()),
-            );
-          },
-          icon: const Icon(Icons.settings),
-        ),
-      ],
-    );
-  }
-
-  Drawer _drawer() {
-    return Drawer(
-      child: ListView(
-        children: [
-          const DrawerHeader(
-            child: Text("Header"),
-          ),
-          ListTile(
-            leading: const Icon(Icons.attach_money),
-            title: const Text("Financial"),
-            onTap: () {},
-          ),
-          ListTile(
-            leading: const Icon(Icons.playlist_add_check_circle_outlined),
-            title: const Text("Daily Planner"),
-            onTap: () {},
-          ),
-          ListTile(
-            leading: const Icon(Icons.notes_outlined),
-            title: const Text("Notes"),
-            onTap: () {},
-          ),
-          Divider(),
-          ListTile(
-            leading: const Icon(Icons.logout),
-            title: const Text("Log Out"),
-            onTap: () {},
-          ),
-        ],
-      ),
     );
   }
 

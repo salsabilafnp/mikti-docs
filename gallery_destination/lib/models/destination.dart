@@ -3,7 +3,7 @@ class Destination {
   final String openDays;
   final String openHours;
   final String location;
-  final String fullLocation;
+  final String address;
   final String ticketPrice;
   final String imageUrl;
   final String description;
@@ -13,7 +13,7 @@ class Destination {
     required this.openDays,
     required this.openHours,
     required this.location,
-    required this.fullLocation,
+    required this.address,
     required this.ticketPrice,
     required this.imageUrl,
     required this.description,

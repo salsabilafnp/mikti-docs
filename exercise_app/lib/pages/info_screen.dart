@@ -1,3 +1,4 @@
+import 'package:exercise_app/components/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
 class InfoScreen extends StatelessWidget {
@@ -9,9 +10,7 @@ class InfoScreen extends StatelessWidget {
     Orientation screenOrientation = MediaQuery.of(context).orientation;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Info Screen'),
-      ),
+      appBar: const CustomAppBar(pageTitle: 'Info Screen'),
       body: SafeArea(
         child: Center(
           child: Column(
