@@ -10,7 +10,8 @@ class HomePage extends StatelessWidget {
     Destination(
       name: 'Curug Cimahi',
       location: 'Parongpong',
-      imageUrl: 'assets/images/curug_cimahi.jpg',
+      imageUrl:
+          'https://s3-ap-southeast-1.amazonaws.com/cntres-assets-ap-southeast-1-250226768838-cf675839782fd369/imageResource/2020/05/14/1589469648745-c3332d476964f1dfdfedbc4dfddfcad9.jpeg',
       openDays: 'Senin - Minggu',
       openHours: '07:00 - 17:00',
       address:

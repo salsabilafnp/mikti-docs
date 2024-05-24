@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gallery_destination/components/custom_appbar.dart';
 import 'package:gallery_destination/models/destination.dart';
+import 'package:hovering/hovering.dart';
 
 class DetailPage extends StatelessWidget {
   final Destination destination;
@@ -13,55 +15,53 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(pageTitle: "Detail ${destination.name}"),
+      appBar: const CustomAppBar(pageTitle: "Detail"),
       body: LayoutBuilder(
         builder: (context, constraints) {
           if (constraints.maxWidth < 600) {
-            return Container(
-              margin: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 50,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(5),
-                    child: Image.asset(
-                      destination.imageUrl,
-                      height: constraints.maxHeight / 2,
-                      width: double.infinity,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  buildDetailContent(),
-                ],
-              ),
-            );
-          } else {
             return SingleChildScrollView(
               child: Container(
-                margin: const EdgeInsets.all(100),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                height: MediaQuery.of(context).size.height,
+                margin: const EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(5),
-                      child: Image.asset(
-                        destination.imageUrl,
-                        width: constraints.maxWidth / 3,
-                        height: constraints.maxHeight / 2,
-                        fit: BoxFit.cover,
-                      ),
+                    HoverWidget(
+                      hoverChild: _buildHoveringImage(
+                          context, constraints.maxHeight / 2, true),
+                      child: _buildHoveringImage(
+                          context, constraints.maxHeight / 3, false),
+                      onHover: (_) {},
                     ),
-                    const SizedBox(width: 50),
+                    const SizedBox(height: 20),
                     Expanded(
-                      child: buildDetailContent(),
+                      child: buildDetailContent(context),
                     ),
                   ],
                 ),
+              ),
+            );
+          } else {
+            return Container(
+              margin: const EdgeInsets.all(75),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(5),
+                    child: Image(
+                      image: NetworkImage(destination.imageUrl),
+                      width: constraints.maxWidth / 3,
+                      height: constraints.maxHeight / 2,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  const SizedBox(width: 50),
+                  Expanded(
+                    child: buildDetailContent(context),
+                  ),
+                ],
               ),
             );
           }
@@ -70,7 +70,38 @@ class DetailPage extends StatelessWidget {
     );
   }
 
-  Widget buildDetailContent() {
+  Widget _buildHoveringImage(
+    BuildContext context,
+    double imageHeight,
+    bool isHovering,
+  ) {
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+      height: isHovering ? imageHeight * 1.5 : imageHeight,
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 5,
+            offset: const Offset(1, 2),
+          ),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Image(
+          image: NetworkImage(destination.imageUrl),
+          width: 200,
+          height: 200,
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
+  Widget buildDetailContent(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -89,11 +120,8 @@ class DetailPage extends StatelessWidget {
         children: [
           Center(
             child: Text(
-              destination.name.toUpperCase(),
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+              destination.name,
+              style: Theme.of(context).textTheme.headlineMedium!,
             ),
           ),
           const SizedBox(height: 10),
@@ -101,58 +129,71 @@ class DetailPage extends StatelessWidget {
             children: [
               const Icon(
                 Icons.calendar_today_outlined,
-                size: 18,
+                size: 16,
               ),
               const SizedBox(width: 10),
-              Text(
-                destination.openDays,
+              Expanded(
+                child: Text(
+                  destination.openDays,
+                ),
               ),
             ],
           ),
+          const SizedBox(height: 5),
           Row(
             children: [
               const Icon(
                 Icons.access_time,
-                size: 18,
+                size: 16,
               ),
               const SizedBox(width: 10),
-              Text(
-                destination.openHours,
+              Expanded(
+                child: Text(
+                  destination.openHours,
+                ),
               ),
             ],
           ),
+          const SizedBox(height: 5),
           Row(
             children: [
               const Icon(
                 Icons.attach_money_rounded,
-                size: 18,
+                size: 16,
               ),
               const SizedBox(width: 10),
-              Text(
-                destination.ticketPrice,
+              Expanded(
+                child: Text(
+                  destination.ticketPrice,
+                ),
               ),
             ],
           ),
+          const SizedBox(height: 5),
           Row(
             children: [
               const Icon(
                 Icons.location_on_outlined,
-                size: 18,
+                size: 16,
               ),
               const SizedBox(width: 10),
               Expanded(
                 child: Text(
                   destination.address,
+                  softWrap: true,
                   overflow: TextOverflow.clip,
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 10),
-          Text(
-            destination.description,
-            textAlign: TextAlign.justify,
-            overflow: TextOverflow.clip,
+          const SizedBox(height: 5),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Text(
+                destination.description,
+                textAlign: TextAlign.justify,
+              ),
+            ),
           ),
         ],
       ),

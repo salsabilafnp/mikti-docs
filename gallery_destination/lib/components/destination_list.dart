@@ -38,8 +38,8 @@ class DestinationListItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              child: Image.asset(
-                destination.imageUrl,
+              child: Image(
+                image: NetworkImage(destination.imageUrl),
                 width: 200,
                 height: 100,
                 fit: BoxFit.cover,

@@ -22,20 +22,33 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Text(pageTitle),
       centerTitle: centerTitle,
       automaticallyImplyLeading: isHomePage ? false : true,
-      actions: _buildActions(context, isHomePage),
+      actions: _buildActions(context, pageTitle),
     );
   }
 
-  List<Widget> _buildActions(BuildContext context, bool isHomePage) {
+  List<Widget> _buildActions(BuildContext context, String pageTitle) {
     List<Widget> actions = [];
 
-    if (isHomePage) {
+    if (pageTitle == "Home") {
       actions.add(
         IconButton(
           icon: const Icon(Icons.settings),
           onPressed: () {
             Navigator.pushNamed(context, '/settings');
           },
+        ),
+      );
+    } else if (pageTitle == "Detail") {
+      actions.add(
+        IconButton(
+          icon: const Icon(Icons.share),
+          onPressed: () {},
+        ),
+      );
+      actions.add(
+        IconButton(
+          icon: const Icon(Icons.bookmark_add),
+          onPressed: () {},
         ),
       );
     }
